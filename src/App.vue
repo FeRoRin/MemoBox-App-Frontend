@@ -1,26 +1,34 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div style="background-color: #fffbea; min-height: 100vh;">
+    <nav class="navbar navbar-light bg-white shadow sticky-top">
+      <div class="container-fluid justify-content-between">
+        <a class="navbar-brand fw-semibold text-secondary" href="#">MEMO BOX</a>
+        <form class="d-flex" role="search">
+          <input class="form-control rounded-pill" type="search" placeholder="Search..." aria-label="Search" v-model="search" @input="filterNotes" />
+        </form>
+      </div>
+    </nav>
+
+    <MemoBoxHome :searchQuery="search" />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MemoBoxHome from './views/MemoBoxHome.vue'
+
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  components: { MemoBoxHome },
+  data() {
+    return {
+      search: ''
+    }
+  },
+  methods: {
+    filterNotes() {
+      // We will pass this.search to MemoBoxHome to filter notes
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
